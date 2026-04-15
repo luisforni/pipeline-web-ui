@@ -61,7 +61,7 @@ Panel de resultados con tabs (`research`, `summary`, `content`). Muestra la barr
 
 ### `route.ts` (API route)
 
-Proxy server-side que recibe el POST del cliente y reenvía la petición al orchestrator usando `process.env.ORCHESTRATOR_URL`. Esto permite que la URL del orchestrator se resuelva en runtime desde la variable de entorno, y evita que el navegador tenga que acceder directamente al servicio interno.
+Proxy server-side que recibe el POST del cliente y reenvía la petición al orchestrator usando `process.env.ORCHESTRATOR_URL`. Utiliza `http.request` de Node.js directamente (sin timeout) en lugar de `fetch`, lo que permite soportar LLMs locales lentos como Ollama sin que la conexión se interrumpa.
 
 ## Variables de entorno
 
